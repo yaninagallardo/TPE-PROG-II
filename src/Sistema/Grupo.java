@@ -1,39 +1,73 @@
 package Sistema;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Grupo extends SistGanadero{
+	private List<SistGanadero> elementos;
 	
+	public Grupo() {
+		this.elementos = new ArrayList<>();
+	}
 	
+	public List<SistGanadero> getElementos() {
+		return elementos;
+	}
+
+	public void setElementos(List<SistGanadero> elementos) {
+		this.elementos = elementos;
+	}
 	
-	
+	public void addElementos(SistGanadero elemen) {
+		this.elementos.add(elemen);
+	}
+
 	//metodos del padre
 	@Override
 	public int getCantAnimales() {
-		// TODO Auto-generated method stub
-		return 0;
+		int cant = 0;
+		for(SistGanadero elem : this.elementos) {
+			cant += elem.getCantAnimales();
+		}
+		
+		//NO PUEDO CONTAR EL GRUPO SI SOLO PIDE LA CANTIDAD DE ANIMALES, POR LO QUE RETORNA CANT SOLO Y NO +1
+		return cant;
 	}
 
 	@Override
 	public double promedioEdad() {
-		// TODO Auto-generated method stub
-		return 0;
+		int prom = 0;
+		for(SistGanadero elem : this.elementos) {
+			prom += elem.promedioEdad();
+		}
+		
+		return (prom / this.getCantAnimales());
 	}
 
 	@Override
 	public double promedioPesoAnimal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (this.pesoTotal() / this.getCantAnimales());
 	}
 
 	@Override
 	public double pesoTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		int pesoTotal = 0;
+		for(SistGanadero elem : this.elementos) {
+			pesoTotal += elem.pesoTotal();
+		}		
+		return pesoTotal;
 	}
 
 	@Override
-	public double buscar(Criterio c) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<SistGanadero> buscar(Criterio c) {
+		List<SistGanadero> cumplen= new ArrayList<>();
+		
+		for (int i=0; i < this.elementos.size(); i++) {
+			SistGanadero elemen = this.elementos.get(i);
+			
+			cumplen.addAll(elemen.buscar(c));
+		}
+		return cumplen;
 	}
 
 	@Override
@@ -43,9 +77,8 @@ public class Grupo extends SistGanadero{
 	}
 
 	@Override
-	public double eliminarAnimal(Animal a) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void eliminarAnimal(Animal a) {
+		this.elementos.remove(a);
 	}
 
 }
