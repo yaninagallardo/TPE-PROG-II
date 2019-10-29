@@ -90,8 +90,8 @@ public class Animal extends SistGanadero{
 	}
 
 	@Override
-	public List<SistGanadero> buscar(Criterio c) {
-		List<SistGanadero> cumplen= new ArrayList<>();
+	public List<Animal> buscar(Criterio c) {
+		List<Animal> cumplen= new ArrayList<>();
 		
 		if (c.cumple(this)) {
 			cumplen.add(this);
@@ -99,17 +99,18 @@ public class Animal extends SistGanadero{
 		
 		return cumplen;
 	}
+	
 
-	@Override
-	public double llenarCamion(Camion c) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	//revisar COMO ELIMINAR EL ANIMAL
 	@Override 
-	public void eliminarAnimal(Animal a) {
-
+	public boolean eliminarAnimal(Animal a) {
+		return false;
+	}
+	
+	public boolean equals(Object o) {
+		if (o instanceof Animal) {
+			return this.id == ((Animal) o).getId();
+		}
+		return false;
 	}
 
 }

@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Grupo extends SistGanadero{
 	private List<SistGanadero> elementos;
+	private List<Criterio> criterios;
 	
 	public Grupo() {
 		this.elementos = new ArrayList<>();
+		this.criterios = new ArrayList<>();
 	}
 	
 	public List<SistGanadero> getElementos() {
@@ -30,7 +32,6 @@ public class Grupo extends SistGanadero{
 			cant += elem.getCantAnimales();
 		}
 		
-		//NO PUEDO CONTAR EL GRUPO SI SOLO PIDE LA CANTIDAD DE ANIMALES, POR LO QUE RETORNA CANT SOLO Y NO +1
 		return cant;
 	}
 
@@ -59,8 +60,8 @@ public class Grupo extends SistGanadero{
 	}
 
 	@Override
-	public List<SistGanadero> buscar(Criterio c) {
-		List<SistGanadero> cumplen= new ArrayList<>();
+	public List<Animal> buscar(Criterio c) {
+		List<Animal> cumplen= new ArrayList<>();
 		
 		for (int i=0; i < this.elementos.size(); i++) {
 			SistGanadero elemen = this.elementos.get(i);
@@ -69,16 +70,35 @@ public class Grupo extends SistGanadero{
 		}
 		return cumplen;
 	}
-
-	@Override
-	public double llenarCamion(Camion c) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public List<SistGanadero> listoParaVender(){
+		List<SistGanadero> venta = new ArrayList<>();
+		
+		for(int i=0; i < this.elementos.size(); i++) {
+			for(int j=0; j < this.criterios.size(); j++) {
+				
+			}
+		}
+		
+		return venta;
 	}
+	
+
 
 	@Override
-	public void eliminarAnimal(Animal a) {
-		this.elementos.remove(a);
+	public boolean eliminarAnimal(Animal a) {
+		if (this.elementos.contains(a)) {
+			this.elementos.remove(a);
+			return true;
+		}else {
+		
+			for(SistGanadero elemen : elementos) {
+				if(elemen.eliminarAnimal(a)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
