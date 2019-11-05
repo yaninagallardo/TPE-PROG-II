@@ -3,6 +3,9 @@ package Sistema;
 import java.util.ArrayList;
 import java.util.List;
 
+import Sistema.CriterioSistGanadero.CriterioSistGanadero;
+import Sistema.CriteriosAnimal.CriterioAnimal;
+
 public class Animal extends SistGanadero{
 	private int id;
 	private int edad;
@@ -90,7 +93,7 @@ public class Animal extends SistGanadero{
 	}
 
 	@Override
-	public List<Animal> buscar(Criterio c) {
+	public List<Animal> buscar(CriterioAnimal c) {
 		List<Animal> cumplen= new ArrayList<>();
 		
 		if (c.cumple(this)) {
@@ -98,6 +101,10 @@ public class Animal extends SistGanadero{
 		}
 		
 		return cumplen;
+	}
+	
+	public List<SistGanadero> buscar(CriterioSistGanadero c){
+		return null;
 	}
 	
 

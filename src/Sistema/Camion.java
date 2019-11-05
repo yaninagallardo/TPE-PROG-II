@@ -3,9 +3,11 @@ package Sistema;
 import java.util.ArrayList;
 import java.util.List;
 
+import Sistema.CriteriosAnimal.CriterioAnimal;
+
 public class Camion {
 	private int capacidad;
-	private List<Criterio> requisitos;
+	private List<CriterioAnimal> requisitos;
 	
 	public Camion (int c) {
 		this.capacidad = c;
@@ -20,15 +22,15 @@ public class Camion {
 		this.capacidad = capacidad;
 	}
 
-	public List<Criterio> getRequisitos() {
+	public List<CriterioAnimal> getRequisitos() {
 		return requisitos;
 	}
 
-	public void setRequisitos(List<Criterio> requisitos) {
+	public void setRequisitos(List<CriterioAnimal> requisitos) {
 		this.requisitos = requisitos;
 	}
 	
-	public void addRequisito(Criterio c) {
+	public void addRequisito(CriterioAnimal c) {
 		if(c != null) {
 			this.requisitos.add(c);
 		}

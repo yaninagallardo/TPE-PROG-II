@@ -3,13 +3,14 @@ package Sistema;
 import java.util.ArrayList;
 import java.util.List;
 
+import Sistema.CriterioSistGanadero.CriterioSistGanadero;
+import Sistema.CriteriosAnimal.CriterioAnimal;
+
 public class Grupo extends SistGanadero{
 	private List<SistGanadero> elementos;
-	private List<Criterio> criterios;
 	
 	public Grupo() {
 		this.elementos = new ArrayList<>();
-		this.criterios = new ArrayList<>();
 	}
 	
 	public List<SistGanadero> getElementos() {
@@ -60,7 +61,7 @@ public class Grupo extends SistGanadero{
 	}
 
 	@Override
-	public List<Animal> buscar(Criterio c) {
+	public List<Animal> buscar(CriterioAnimal c) {
 		List<Animal> cumplen= new ArrayList<>();
 		
 		for (int i=0; i < this.elementos.size(); i++) {
@@ -71,19 +72,14 @@ public class Grupo extends SistGanadero{
 		return cumplen;
 	}
 	
-	public List<SistGanadero> listoParaVender(){
-		List<SistGanadero> venta = new ArrayList<>();
+	public List<SistGanadero> buscar(CriterioSistGanadero c){
+		List<SistGanadero> cumplen = new ArrayList<>();
 		
-		for(int i=0; i < this.elementos.size(); i++) {
-			for(int j=0; j < this.criterios.size(); j++) {
-				
-			}
+		for (SistGanadero sist : this.elementos) {
+			cumplen.addAll(sist.buscar(c));
 		}
-		
-		return venta;
+		return cumplen;
 	}
-	
-
 
 	@Override
 	public boolean eliminarAnimal(Animal a) {

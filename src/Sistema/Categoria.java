@@ -1,11 +1,13 @@
 package Sistema;
 
+import Sistema.CriteriosAnimal.CriterioAnimal;
+
 public class Categoria {
 	private String etiqueta;
-	private Criterio criterio;
+	private CriterioAnimal criterio;
 	
 	
-	public Categoria(String eti, Criterio c) {
+	public Categoria(String eti, CriterioAnimal c) {
 		this.etiqueta = eti;
 		this.criterio = c;
 	}
@@ -21,12 +23,12 @@ public class Categoria {
 	}
 
 
-	public Criterio getCriterio() {
+	public CriterioAnimal getCriterio() {
 		return criterio;
 	}
 
 
-	public void setCriterio(Criterio criterio) {
+	public void setCriterio(CriterioAnimal criterio) {
 		this.criterio = criterio;
 	}
 
